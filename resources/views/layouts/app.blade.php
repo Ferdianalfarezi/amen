@@ -617,7 +617,7 @@
     <!-- Sidebar -->
     <aside id="sidebar" class="sidebar">
         <div class="sidebar-header">
-            <h1><i>AMEN</i></h1>
+            <h1><i>AMiN</i></h1>
             <p>3D Drawing Management System</p>
         </div>
 
