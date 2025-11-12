@@ -620,7 +620,7 @@
             <h1><i>AMEN</i></h1>
             <p>3D Drawing Management System</p>
         </div>
-fvjnvenbe b vsfvbe
+
         <nav class="sidebar-nav">
             <a href="{{ route('dashboard') }}" class="nav-item {{ request()->routeIs('dashboard') ? 'active' : '' }}">
                 <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
