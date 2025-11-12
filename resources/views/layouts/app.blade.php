@@ -617,10 +617,10 @@
     <!-- Sidebar -->
     <aside id="sidebar" class="sidebar">
         <div class="sidebar-header">
-            <h1><i>AMiN</i></h1>
+            <h1><i>AMEN</i></h1>
             <p>3D Drawing Management System</p>
         </div>
-dfasveb e etbq
+fvjnvenbe b vsfvbe
         <nav class="sidebar-nav">
             <a href="{{ route('dashboard') }}" class="nav-item {{ request()->routeIs('dashboard') ? 'active' : '' }}">
                 <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
