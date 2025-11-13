@@ -49,6 +49,7 @@ Route::middleware(['auth', 'check.user.status'])->group(function () {
     |--------------------------------------------------------------------------
     */
     Route::prefix('drawings/{drawing}')->group(function () {
+        Route::get('/files2d', [DrawingController::class, 'files2d'])->name('drawings.files2d');
         Route::get('/files3d', [DrawingController::class, 'files3d'])->name('drawings.files3d');
         Route::get('/sample-parts', [DrawingController::class, 'sampleParts'])->name('drawings.sampleParts');
         Route::get('/qualities', [DrawingController::class, 'qualities'])->name('drawings.qualities');
@@ -65,6 +66,7 @@ Route::middleware(['auth', 'check.user.status'])->group(function () {
     |--------------------------------------------------------------------------
     */
     Route::prefix('drawings/{drawing}')->group(function () {
+        Route::post('/upload-files2d', [DrawingController::class, 'uploadFile2D'])->name('drawings.uploadFile2D');
         Route::post('/upload-files3d', [DrawingController::class, 'uploadFile3D'])->name('drawings.uploadFile3D');
         Route::post('/upload-sample-parts', [DrawingController::class, 'uploadSamplePart'])->name('drawings.uploadSamplePart');
         Route::post('/upload-qualities', [DrawingController::class, 'uploadQuality'])->name('drawings.uploadQuality');
@@ -78,8 +80,8 @@ Route::middleware(['auth', 'check.user.status'])->group(function () {
     | Delete Routes (DELETE)
     |--------------------------------------------------------------------------
     */
+    Route::delete('/files2d/{id}', [DrawingController::class, 'deleteFile2D'])->name('drawings.deleteFile2D');
     Route::delete('/files3d/{id}', [DrawingController::class, 'deleteFile3D'])->name('drawings.deleteFile3D');
-    Route::delete('/files-2d/{id}', [DrawingController::class, 'deleteFile2D'])->name('files2d.delete');
     Route::delete('/sample-parts/{id}', [DrawingController::class, 'deleteSamplePart'])->name('drawings.deleteSamplePart');
     Route::delete('/qualities/{id}', [DrawingController::class, 'deleteQuality'])->name('drawings.deleteQuality');
     Route::delete('/setup-procedures/{id}', [DrawingController::class, 'deleteSetupProcedure'])->name('drawings.deleteSetupProcedure');

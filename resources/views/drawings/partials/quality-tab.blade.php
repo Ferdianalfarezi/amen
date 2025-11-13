@@ -211,7 +211,7 @@
                         <div class="grid grid-cols-3 gap-2">
                             <a href="{{ asset('storage/' . $file->file_path) }}" 
                                download="{{ $file->nama }}"
-                               class="col-span-2 bg-yellow-500 hover:bg-yellow-600 text-white px-3 py-2.5 rounded-lg flex items-center justify-center transition-all shadow-sm hover:shadow-md text-sm font-medium"
+                               class="col-span-2 bg-black hover:bg-green-600 text-white px-3 py-2.5 rounded-lg flex items-center justify-center transition-all shadow-sm hover:shadow-md text-sm font-medium"
                                title="Download {{ $file->nama }}">
                                 <svg class="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 

@@ -207,6 +207,15 @@ class DrawingController extends Controller
     /**
      * Methods for Lazy Loading Tabs
      */
+
+    public function files2d(Drawing $drawing)
+    {
+        return view('drawings.partials.files2d-tab', [
+            'files' => $drawing->files2d, 
+            'drawing' => $drawing
+        ]);
+    }
+
     public function files3d(Drawing $drawing)
     {
         return view('drawings.partials.files3d-tab', [
@@ -422,6 +431,58 @@ class DrawingController extends Controller
     /**
      * UPLOAD METHODS - dengan thumbnail generation
      */
+    public function uploadFile2D(Request $request, Drawing $drawing)
+    {
+        // Check permission
+        if (!auth()->user()->hasPermission('files_2d', 'upload')) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Anda tidak memiliki akses untuk upload file.'
+            ], 403);
+        }
+
+        $request->validate([
+            'file' => 'required|file|max:102400',
+            'nama' => 'nullable|string|max:255',
+        ]);
+
+        try {
+            $file = $request->file('file');
+            $extension = $file->getClientOriginalExtension();
+            $filePath = $file->store('files_2d/' . $drawing->id, 'public');
+            
+            File2D::create([
+                'drawing_id' => $drawing->id,
+                'nama' => $request->nama ?? $file->getClientOriginalName(),
+                'file_path' => $filePath,
+                'tipe_file' => $extension,
+                'mime_type' => $file->getMimeType(),
+                'ukuran' => $file->getSize(),
+            ]);
+
+            if ($request->ajax() || $request->wantsJson()) {
+                return response()->json([
+                    'success' => true,
+                    'message' => '2D File berhasil diupload!'
+                ]);
+            }
+
+            return redirect()->route('drawings.show', $drawing)
+                ->with('success', '2D File berhasil diupload!');
+                
+        } catch (\Exception $e) {
+            if ($request->ajax() || $request->wantsJson()) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Gagal upload file: ' . $e->getMessage()
+                ], 500);
+            }
+            
+            return redirect()->back()
+                ->with('error', 'Gagal upload file: ' . $e->getMessage());
+        }
+    }
+
     public function uploadFile3D(Request $request, Drawing $drawing)
     {
         // Check permission
