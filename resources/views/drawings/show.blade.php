@@ -43,216 +43,216 @@
         </div>
 
         <!-- Tabs -->
-<div class="bg-white rounded-xl shadow-md overflow-hidden">
-    <!-- Tab Header - Horizontal Scrollable -->
-    <div class="border-b border-gray-200 overflow-x-auto">
-        <ul class="flex flex-nowrap text-sm font-medium text-center text-gray-500 whitespace-nowrap" 
-            id="fileTabs" role="tablist">
-            
-            <!-- Tab 1: 2D Files (Default Active) -->
-            <li class="mr-2" role="presentation">
-                <button class="inline-flex items-center px-4 py-3 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 tab-link active" 
-                        data-tab="files2d" 
-                        data-url="{{ route('drawings.files2d', $drawing) }}"
-                        id="files2d-tab" 
-                        type="button" 
-                        role="tab"
-                        aria-selected="true">
-                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                    </svg>
-                    Drawing
-                    <span class="ml-2 bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded">{{ $drawing->files2d->count() }}</span>
-                </button>
-            </li>
+    <div class="bg-white rounded-xl shadow-md overflow-hidden">
+        <!-- Tab Header - Horizontal Scrollable -->
+        <div class="border-b border-gray-200 overflow-x-auto">
+            <ul class="flex flex-nowrap text-sm font-medium text-center text-gray-500 whitespace-nowrap" 
+                id="fileTabs" role="tablist">
+                
+                <!-- Tab 1: 2D Files (Default Active) -->
+                <li class="mr-2" role="presentation">
+                    <button class="inline-flex items-center px-4 py-3 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 tab-link active" 
+                            data-tab="files2d" 
+                            data-url="{{ route('drawings.files2d', $drawing) }}"
+                            id="files2d-tab" 
+                            type="button" 
+                            role="tab"
+                            aria-selected="true">
+                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                        </svg>
+                        Drawing
+                        <span class="ml-2 bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded">{{ $drawing->files2d->count() }}</span>
+                    </button>
+                </li>
 
-            <!-- Tab 2: 3D Files (TANPA class active) -->
-            <li class="mr-2" role="presentation">
-                <button class="inline-flex items-center px-4 py-3 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 tab-link" 
-                        data-tab="files3d" 
-                        data-url="{{ route('drawings.files3d', $drawing) }}"
-                        id="files3d-tab" 
-                        type="button" 
-                        role="tab"
-                        aria-selected="false">
-                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
-                    </svg>
-                    3D Files
-                    <span class="ml-2 bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded">{{ $drawing->files3d->count() }}</span>
-                </button>
-            </li>
+                <!-- Tab 2: 3D Files (TANPA class active) -->
+                <li class="mr-2" role="presentation">
+                    <button class="inline-flex items-center px-4 py-3 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 tab-link" 
+                            data-tab="files3d" 
+                            data-url="{{ route('drawings.files3d', $drawing) }}"
+                            id="files3d-tab" 
+                            type="button" 
+                            role="tab"
+                            aria-selected="false">
+                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+                        </svg>
+                        3D Files
+                        <span class="ml-2 bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded">{{ $drawing->files3d->count() }}</span>
+                    </button>
+                </li>
 
-            <!-- Tab 3: Sample Parts -->
-            <li class="mr-2" role="presentation">
-                <button class="inline-flex items-center px-4 py-3 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 tab-link" 
-                        data-tab="sample-parts" 
-                        data-url="{{ route('drawings.sampleParts', $drawing) }}"
-                        id="sample-parts-tab" 
-                        type="button" 
-                        role="tab"
-                        aria-selected="false">
-                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h10a2 2 0 012 2v6a2 2 0 01-2 2H7a2 2 0 01-2-2V9a2 2 0 012-2z" />
-                    </svg>
-                    Sample Parts
-                    <span class="ml-2 bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded">{{ $drawing->sampleParts->count() }}</span>
-                </button>
-            </li>
+                <!-- Tab 3: Sample Parts -->
+                <li class="mr-2" role="presentation">
+                    <button class="inline-flex items-center px-4 py-3 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 tab-link" 
+                            data-tab="sample-parts" 
+                            data-url="{{ route('drawings.sampleParts', $drawing) }}"
+                            id="sample-parts-tab" 
+                            type="button" 
+                            role="tab"
+                            aria-selected="false">
+                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h10a2 2 0 012 2v6a2 2 0 01-2 2H7a2 2 0 01-2-2V9a2 2 0 012-2z" />
+                        </svg>
+                        Sample Parts
+                        <span class="ml-2 bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded">{{ $drawing->sampleParts->count() }}</span>
+                    </button>
+                </li>
 
-            <!-- Tab 4: Quality -->
-            <li class="mr-2" role="presentation">
-                <button class="inline-flex items-center px-4 py-3 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 tab-link" 
-                        data-tab="quality" 
-                        data-url="{{ route('drawings.qualities', $drawing) }}"
-                        id="quality-tab" 
-                        type="button" 
-                        role="tab"
-                        aria-selected="false">
-                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                    </svg>
-                    Quality
-                    <span class="ml-2 bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded">{{ $drawing->qualities->count() }}</span>
-                </button>
-            </li>
+                <!-- Tab 4: Quality -->
+                <li class="mr-2" role="presentation">
+                    <button class="inline-flex items-center px-4 py-3 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 tab-link" 
+                            data-tab="quality" 
+                            data-url="{{ route('drawings.qualities', $drawing) }}"
+                            id="quality-tab" 
+                            type="button" 
+                            role="tab"
+                            aria-selected="false">
+                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                        </svg>
+                        Quality
+                        <span class="ml-2 bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded">{{ $drawing->qualities->count() }}</span>
+                    </button>
+                </li>
 
-            <!-- Tab 5: Setup Procedure -->
-            <li class="mr-2" role="presentation">
-                <button class="inline-flex items-center px-4 py-3 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 tab-link" 
-                        data-tab="setup" 
-                        data-url="{{ route('drawings.setupProcedures', $drawing) }}"
-                        id="setup-tab" 
-                        type="button" 
-                        role="tab"
-                        aria-selected="false">
-                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
-                    </svg>
-                    Setup Procedure
-                    <span class="ml-2 bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded">{{ $drawing->setupProcedures->count() }}</span>
-                </button>
-            </li>
+                <!-- Tab 5: Setup Procedure -->
+                <li class="mr-2" role="presentation">
+                    <button class="inline-flex items-center px-4 py-3 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 tab-link" 
+                            data-tab="setup" 
+                            data-url="{{ route('drawings.setupProcedures', $drawing) }}"
+                            id="setup-tab" 
+                            type="button" 
+                            role="tab"
+                            aria-selected="false">
+                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+                        </svg>
+                        Setup Procedure
+                        <span class="ml-2 bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded">{{ $drawing->setupProcedures->count() }}</span>
+                    </button>
+                </li>
 
-            <!-- Tab 6: Quotes -->
-            <li class="mr-2" role="presentation">
-                <button class="inline-flex items-center px-4 py-3 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 tab-link" 
-                        data-tab="quotes" 
-                        data-url="{{ route('drawings.quotes', $drawing) }}"
-                        id="quotes-tab" 
-                        type="button" 
-                        role="tab"
-                        aria-selected="false">
-                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                    </svg>
-                    Quotes
-                    <span class="ml-2 bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded">{{ $drawing->quotes->count() }}</span>
-                </button>
-            </li>
+                <!-- Tab 6: Quotes -->
+                <li class="mr-2" role="presentation">
+                    <button class="inline-flex items-center px-4 py-3 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 tab-link" 
+                            data-tab="quotes" 
+                            data-url="{{ route('drawings.quotes', $drawing) }}"
+                            id="quotes-tab" 
+                            type="button" 
+                            role="tab"
+                            aria-selected="false">
+                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                        </svg>
+                        Quotes
+                        <span class="ml-2 bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded">{{ $drawing->quotes->count() }}</span>
+                    </button>
+                </li>
 
-            <!-- Tab 7: Work Instructions -->
-            <li class="mr-2" role="presentation">
-                <button class="inline-flex items-center px-4 py-3 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 tab-link" 
-                        data-tab="work-instructions" 
-                        data-url="{{ route('drawings.workInstructions', $drawing) }}"
-                        id="work-instructions-tab" 
-                        type="button" 
-                        role="tab"
-                        aria-selected="false">
-                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
-                    </svg>
-                    Work Instructions
-                    <span class="ml-2 bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded">{{ $drawing->workInstructions->count() }}</span>
-                </button>
-            </li>
-        </ul>
-    </div>
+                <!-- Tab 7: Work Instructions -->
+                <li class="mr-2" role="presentation">
+                    <button class="inline-flex items-center px-4 py-3 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 tab-link" 
+                            data-tab="work-instructions" 
+                            data-url="{{ route('drawings.workInstructions', $drawing) }}"
+                            id="work-instructions-tab" 
+                            type="button" 
+                            role="tab"
+                            aria-selected="false">
+                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+                        </svg>
+                        Work Instructions
+                        <span class="ml-2 bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded">{{ $drawing->workInstructions->count() }}</span>
+                    </button>
+                </li>
+            </ul>
+        </div>
 
-    <!-- Tab Content -->
-    <div class="p-6">
-        <div class="tab-content" id="fileTabsContent">
-            
-            <!-- 2D Files (Default Visible) -->
-            <div class="tab-pane block" id="files2d" role="tabpanel" aria-labelledby="files2d-tab">
-                <div class="text-center py-12">
-                    <svg class="w-24 h-24 mx-auto text-gray-300 mb-4 animate-spin" fill="none" viewBox="0 0 24 24">
-                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                    </svg>
-                    <p class="text-gray-500 text-lg">Loading 2D Files...</p>
+        <!-- Tab Content -->
+        <div class="p-6">
+            <div class="tab-content" id="fileTabsContent">
+                
+                <!-- 2D Files (Default Visible) -->
+                <div class="tab-pane block" id="files2d" role="tabpanel" aria-labelledby="files2d-tab">
+                    <div class="text-center py-12">
+                        <svg class="w-24 h-24 mx-auto text-gray-300 mb-4 animate-spin" fill="none" viewBox="0 0 24 24">
+                            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                        </svg>
+                        <p class="text-gray-500 text-lg">Loading 2D Files...</p>
+                    </div>
                 </div>
-            </div>
 
-            <!-- 3D Files -->
-            <div class="tab-pane hidden" id="files3d" role="tabpanel" aria-labelledby="files3d-tab">
-                <div class="text-center py-12">
-                    <svg class="w-24 h-24 mx-auto text-gray-300 mb-4 animate-spin" fill="none" viewBox="0 0 24 24">
-                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                    </svg>
-                    <p class="text-gray-500 text-lg">Loading 3D Files...</p>
+                <!-- 3D Files -->
+                <div class="tab-pane hidden" id="files3d" role="tabpanel" aria-labelledby="files3d-tab">
+                    <div class="text-center py-12">
+                        <svg class="w-24 h-24 mx-auto text-gray-300 mb-4 animate-spin" fill="none" viewBox="0 0 24 24">
+                            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                        </svg>
+                        <p class="text-gray-500 text-lg">Loading 3D Files...</p>
+                    </div>
                 </div>
-            </div>
 
-            <!-- Sample Parts -->
-            <div class="tab-pane hidden" id="sample-parts" role="tabpanel" aria-labelledby="sample-parts-tab">
-                <div class="text-center py-12">
-                    <svg class="w-24 h-24 mx-auto text-gray-300 mb-4 animate-spin" fill="none" viewBox="0 0 24 24">
-                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                    </svg>
-                    <p class="text-gray-500 text-lg">Loading Sample Parts...</p>
+                <!-- Sample Parts -->
+                <div class="tab-pane hidden" id="sample-parts" role="tabpanel" aria-labelledby="sample-parts-tab">
+                    <div class="text-center py-12">
+                        <svg class="w-24 h-24 mx-auto text-gray-300 mb-4 animate-spin" fill="none" viewBox="0 0 24 24">
+                            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                        </svg>
+                        <p class="text-gray-500 text-lg">Loading Sample Parts...</p>
+                    </div>
                 </div>
-            </div>
 
-            <!-- Quality -->
-            <div class="tab-pane hidden" id="quality" role="tabpanel" aria-labelledby="quality-tab">
-                <div class="text-center py-12">
-                    <svg class="w-24 h-24 mx-auto text-gray-300 mb-4 animate-spin" fill="none" viewBox="0 0 24 24">
-                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                    </svg>
-                    <p class="text-gray-500 text-lg">Loading Quality Files...</p>
+                <!-- Quality -->
+                <div class="tab-pane hidden" id="quality" role="tabpanel" aria-labelledby="quality-tab">
+                    <div class="text-center py-12">
+                        <svg class="w-24 h-24 mx-auto text-gray-300 mb-4 animate-spin" fill="none" viewBox="0 0 24 24">
+                            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                        </svg>
+                        <p class="text-gray-500 text-lg">Loading Quality Files...</p>
+                    </div>
                 </div>
-            </div>
 
-            <!-- Setup Procedure -->
-            <div class="tab-pane hidden" id="setup" role="tabpanel" aria-labelledby="setup-tab">
-                <div class="text-center py-12">
-                    <svg class="w-24 h-24 mx-auto text-gray-300 mb-4 animate-spin" fill="none" viewBox="0 0 24 24">
-                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                    </svg>
-                    <p class="text-gray-500 text-lg">Loading Setup Procedures...</p>
+                <!-- Setup Procedure -->
+                <div class="tab-pane hidden" id="setup" role="tabpanel" aria-labelledby="setup-tab">
+                    <div class="text-center py-12">
+                        <svg class="w-24 h-24 mx-auto text-gray-300 mb-4 animate-spin" fill="none" viewBox="0 0 24 24">
+                            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                        </svg>
+                        <p class="text-gray-500 text-lg">Loading Setup Procedures...</p>
+                    </div>
                 </div>
-            </div>
 
-            <!-- Quotes -->
-            <div class="tab-pane hidden" id="quotes" role="tabpanel" aria-labelledby="quotes-tab">
-                <div class="text-center py-12">
-                    <svg class="w-24 h-24 mx-auto text-gray-300 mb-4 animate-spin" fill="none" viewBox="0 0 24 24">
-                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                    </svg>
-                    <p class="text-gray-500 text-lg">Loading Quotes...</p>
+                <!-- Quotes -->
+                <div class="tab-pane hidden" id="quotes" role="tabpanel" aria-labelledby="quotes-tab">
+                    <div class="text-center py-12">
+                        <svg class="w-24 h-24 mx-auto text-gray-300 mb-4 animate-spin" fill="none" viewBox="0 0 24 24">
+                            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                        </svg>
+                        <p class="text-gray-500 text-lg">Loading Quotes...</p>
+                    </div>
                 </div>
-            </div>
 
-            <!-- Work Instructions -->
-            <div class="tab-pane hidden" id="work-instructions" role="tabpanel" aria-labelledby="work-instructions-tab">
-                <div class="text-center py-12">
-                    <svg class="w-24 h-24 mx-auto text-gray-300 mb-4 animate-spin" fill="none" viewBox="0 0 24 24">
-                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                    </svg>
-                    <p class="text-gray-500 text-lg">Loading Work Instructions...</p>
+                <!-- Work Instructions -->
+                <div class="tab-pane hidden" id="work-instructions" role="tabpanel" aria-labelledby="work-instructions-tab">
+                    <div class="text-center py-12">
+                        <svg class="w-24 h-24 mx-auto text-gray-300 mb-4 animate-spin" fill="none" viewBox="0 0 24 24">
+                            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                        </svg>
+                        <p class="text-gray-500 text-lg">Loading Work Instructions...</p>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 
     <!-- Modal untuk Preview Photo -->
     <div id="modalPhoto" class="hidden fixed inset-0 bg-black bg-opacity-75 z-50 items-center justify-center p-4">
