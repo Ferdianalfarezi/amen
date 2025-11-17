@@ -442,7 +442,7 @@ class DrawingController extends Controller
         }
 
         $request->validate([
-            'file' => 'required|file|max:102400',
+            'file' => 'required|file|max:200000',
             'nama' => 'nullable|string|max:255',
         ]);
 
@@ -494,7 +494,7 @@ class DrawingController extends Controller
         }
 
         $request->validate([
-            'file' => 'required|file|max:102400',
+            'file' => 'required|file|max:200000',
             'nama' => 'nullable|string|max:255',
             'deskripsi' => 'nullable|string',
         ]);
@@ -557,7 +557,7 @@ class DrawingController extends Controller
         }
 
         $request->validate([
-            'file' => 'required|file|max:102400',
+            'file' => 'required|file|max:200000',
             'nama' => 'nullable|string|max:255',
             'deskripsi' => 'nullable|string',
         ]);
@@ -665,7 +665,7 @@ class DrawingController extends Controller
     private function handleSingleUpload(Request $request, Drawing $drawing, $modelClass, $storagePath, $fileType)
     {
         $request->validate([
-            'file' => 'required|file|max:102400',
+            'file' => 'required|file|max:200000',
             'nama' => 'nullable|string|max:255',
             'deskripsi' => 'nullable|string',
         ]);

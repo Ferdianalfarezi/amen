@@ -201,7 +201,7 @@
                             class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100">
                     </div>
                     <p class="text-xs text-gray-500 mt-2">
-                        <span class="font-medium">Supported formats:</span>GLB,IGS
+                        <span class="font-medium">Supported formats:</span> GLB, IGS, IGES, STEP, STL
                         <br>
                         <span class="font-medium">Max size:</span> 100MB
                     </p>
@@ -227,16 +227,32 @@
                         class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition resize-none"></textarea>
                 </div>
 
+                <!-- Progress Bar -->
+                <div id="upload3DProgress" class="hidden">
+                    <div class="mb-2 flex justify-between items-center">
+                        <span class="text-sm font-medium text-gray-700">Uploading...</span>
+                        <span id="upload3DPercent" class="text-sm font-bold text-blue-600">0%</span>
+                    </div>
+                    <div class="w-full bg-gray-200 rounded-full h-3 overflow-hidden shadow-inner">
+                        <div id="upload3DBar" 
+                             class="h-3 rounded-full" 
+                             style="width: 0%; background: linear-gradient(90deg, #3B82F6 0%, #2563EB 100%) !important; transition: width 0.3s ease-out;"></div>
+                    </div>
+                    <p id="upload3DStatus" class="text-xs text-gray-500 mt-2">Preparing upload...</p>
+                </div>
+
                 <!-- Buttons -->
                 <div class="flex gap-3 pt-4">
                     <button 
                         type="button" 
                         onclick="closeModal('uploadModal3D')"
+                        id="cancel3DBtn"
                         class="flex-1 bg-gray-200 hover:bg-gray-300 text-gray-700 px-4 py-3 rounded-lg transition font-medium">
                         Batal
                     </button>
                     <button 
                         type="submit"
+                        id="submit3DBtn"
                         class="flex-1 bg-blue-600 hover:bg-blue-700 text-white px-4 py-3 rounded-lg transition font-medium shadow-md hover:shadow-lg">
                         Upload
                     </button>
@@ -309,6 +325,16 @@ model-viewer::part(default-progress-bar) {
     width: 100% !important;
     height: 100% !important;
     display: block;
+}
+
+/* Progress bar animation */
+@keyframes pulse-progress {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.8; }
+}
+
+#upload3DBar {
+    animation: pulse-progress 2s ease-in-out infinite;
 }
 </style>
 @endif
@@ -394,7 +420,7 @@ async function loadOCCViewer(fileUrl, fileName) {
         `;
         
         // Inisialisasi OCC WASM
-        if (typeof occ-wasm === 'undefined') {
+        if (typeof occ === 'undefined') {
             throw new Error('OCC WASM library not loaded');
         }
         
@@ -403,7 +429,7 @@ async function loadOCCViewer(fileUrl, fileName) {
         
         // Inisialisasi OCC viewer
         const canvas = document.getElementById('occCanvas');
-        occViewer = await occ-wasm.init(canvas);
+        occViewer = await occ.init(canvas);
         
         // Load file CAD
         const response = await fetch(fileUrl);
@@ -456,82 +482,6 @@ function loadModelViewer(fileUrl, fileName) {
         </model-viewer>
     `;
 }
-
-// Handle form submission untuk upload 3D file
-document.getElementById('upload3DForm')?.addEventListener('submit', function(e) {
-    e.preventDefault();
-    
-    const formData = new FormData(this);
-    const submitBtn = this.querySelector('button[type="submit"]');
-    const originalText = submitBtn.textContent;
-    
-    // Disable button dan show loading
-    submitBtn.disabled = true;
-    submitBtn.innerHTML = `
-        <svg class="animate-spin h-5 w-5 mx-auto" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-        </svg>
-    `;
-    
-    fetch(this.action, {
-        method: 'POST',
-        headers: {
-            'X-CSRF-TOKEN': '{{ csrf_token() }}',
-            'X-Requested-With': 'XMLHttpRequest'
-        },
-        body: formData
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.success) {
-            closeModal('uploadModal3D');
-            this.reset();
-            
-            // Show success notification
-            const notification = document.createElement('div');
-            notification.className = 'fixed top-4 right-4 bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg z-[100]';
-            notification.innerHTML = `
-                <div class="flex items-center gap-2">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
-                    </svg>
-                    <span>${data.message}</span>
-                </div>
-            `;
-            document.body.appendChild(notification);
-            
-            // Reload the active tab using the parent page's function
-            if (typeof loadTabContent === 'function') {
-                const activeTab = document.querySelector('.tab-link.active');
-                if (activeTab) {
-                    loadTabContent(activeTab.dataset.tab, activeTab.dataset.url);
-                }
-            } else {
-                // Fallback: reload full page if function not available
-                setTimeout(() => {
-                    window.location.reload();
-                }, 1000);
-            }
-            
-            // Remove notification after 3 seconds
-            setTimeout(() => {
-                notification.remove();
-            }, 3000);
-        } else {
-            alert('Error: ' + data.message);
-        }
-    })
-    .catch(error => {
-        console.error('Error:', error);
-        alert('Terjadi kesalahan saat upload file');
-    })
-    .finally(() => {
-        // Re-enable button
-        submitBtn.disabled = false;
-        submitBtn.textContent = originalText;
-    });
-});
 
 // Preview filename when selected
 document.getElementById('file3DInput')?.addEventListener('change', function(e) {

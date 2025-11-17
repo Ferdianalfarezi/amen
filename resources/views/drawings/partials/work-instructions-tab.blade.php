@@ -70,63 +70,32 @@
                     $iconPath = '';
 
                     switch ($extension) {
-                        case 'jpg': 
-                        case 'jpeg': 
-                        case 'png': 
-                        case 'gif': 
-                        case 'webp':
-                            $typeLabel = 'Image'; 
-                            $iconColor = 'text-blue-500'; 
-                            $bgColor = 'bg-blue-50';
+                        case 'jpg': case 'jpeg': case 'png': case 'gif': case 'webp':
+                            $typeLabel = 'Image'; $iconColor = 'text-blue-500'; $bgColor = 'bg-blue-50';
                             $iconPath = 'M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z';
                             break;
-                            
-                        case 'mp4': 
-                        case 'avi': 
-                        case 'mov': 
-                        case 'webm': 
-                        case 'mkv':
-                            $typeLabel = 'Video'; 
-                            $iconColor = 'text-purple-500';
-                            $bgColor = 'bg-purple-50';
+                        case 'mp4': case 'avi': case 'mov': case 'webm': case 'mkv':
+                            $typeLabel = 'Video'; $iconColor = 'text-purple-500'; $bgColor = 'bg-purple-50';
                             $iconPath = 'M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z';
                             break;
-                            
                         case 'pdf':
-                            $typeLabel = 'PDF'; 
-                            $iconColor = 'text-red-500';
-                            $bgColor = 'bg-red-50';
+                            $typeLabel = 'PDF'; $iconColor = 'text-red-500'; $bgColor = 'bg-red-50';
                             $iconPath = 'M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z';
                             break;
-                            
-                        case 'doc': 
-                        case 'docx':
-                            $typeLabel = 'Word'; 
-                            $iconColor = 'text-blue-600';
-                            $bgColor = 'bg-blue-50';
+                        case 'doc': case 'docx':
+                            $typeLabel = 'Word'; $iconColor = 'text-blue-600'; $bgColor = 'bg-blue-50';
                             $iconPath = 'M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z';
                             break;
-                            
-                        case 'xls': 
-                        case 'xlsx':
-                            $typeLabel = 'Excel'; 
-                            $iconColor = 'text-green-600';
-                            $bgColor = 'bg-green-50';
+                        case 'xls': case 'xlsx':
+                            $typeLabel = 'Excel'; $iconColor = 'text-green-600'; $bgColor = 'bg-green-50';
                             $iconPath = 'M3 10h18M3 14h18m-9-4v8m-7 0h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z';
                             break;
-                            
-                        case 'ppt': 
-                        case 'pptx':
-                            $typeLabel = 'PowerPoint'; 
-                            $iconColor = 'text-orange-600';
-                            $bgColor = 'bg-orange-100';
+                        case 'ppt': case 'pptx':
+                            $typeLabel = 'PowerPoint'; $iconColor = 'text-orange-600'; $bgColor = 'bg-orange-100';
                             $iconPath = 'M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01';
                             break;
-                            
                         default:
-                            $typeLabel = strtoupper($extension ?: 'File'); 
-                            $iconColor = 'text-gray-500';
-                            $bgColor = 'bg-gray-50';
+                            $typeLabel = strtoupper($extension ?: 'File'); $iconColor = 'text-gray-500'; $bgColor = 'bg-gray-50';
                             $iconPath = 'M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z';
                             break;
                     }
@@ -142,18 +111,11 @@
                         data-mime-type="{{ $file->mime_type ?? '' }}">
                         
                         @if($file->isImage())
-                            {{-- Tampilkan gambar langsung --}}
-                            <img src="{{ asset('storage/' . $file->file_path) }}" 
-                                 alt="{{ $file->nama }}" 
-                                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
-                                 
+                            <img src="{{ asset('storage/' . $file->file_path) }}" alt="{{ $file->nama }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
                         @elseif($file->isVideo())
                             @if($file->hasThumbnail())
-                                {{-- Tampilkan thumbnail video dengan play button --}}
                                 <div class="relative w-full h-full">
-                                    <img src="{{ $file->thumbnail_url }}" 
-                                         alt="{{ $file->nama }}" 
-                                         class="w-full h-full object-cover">
+                                    <img src="{{ $file->thumbnail_url }}" alt="{{ $file->nama }}" class="w-full h-full object-cover">
                                     <div class="absolute inset-0 flex items-center justify-center">
                                         <div class="bg-black bg-opacity-60 rounded-full p-4 group-hover:bg-opacity-80 transition">
                                             <svg class="w-10 h-10 text-white" fill="currentColor" viewBox="0 0 20 20">
@@ -163,28 +125,21 @@
                                     </div>
                                 </div>
                             @else
-                                {{-- Fallback: tampilkan video element --}}
                                 <video class="w-full h-full object-cover opacity-90 group-hover:opacity-100">
                                     <source src="{{ asset('storage/' . $file->file_path) }}" type="{{ $file->mime_type }}">
                                 </video>
                             @endif
-                            
                         @else
                             @if($file->hasThumbnail())
-                                {{-- Tampilkan thumbnail dokumen (PDF, PPT, DOC, XLS) --}}
                                 <div class="relative w-full h-full">
-                                    <img src="{{ $file->thumbnail_url }}" 
-                                         alt="{{ $file->nama }}" 
-                                         class="w-full h-full object-contain bg-white">
-                                    {{-- Badge tipe file di pojok --}}
+                                    <img src="{{ $file->thumbnail_url }}" alt="{{ $file->nama }}" class="w-full h-full object-contain bg-white">
                                     <div class="absolute top-2 right-2 px-2 py-1 {{ str_replace('text-', 'bg-', $iconColor) }} text-white text-xs font-bold rounded shadow">
                                         {{ strtoupper($extension) }}
                                     </div>
                                 </div>
                             @else
-                                {{-- Fallback: tampilkan icon jika thumbnail gagal --}}
                                 <div class="flex flex-col items-center justify-center h-full {{ $bgColor }}">
-                                    <svg class="w-16 h-16 {{ $iconColor }} mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <svg class="w-16 h-16 {{ $iconColor }} mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="{{ $iconPath }}" />
                                     </svg>
                                     <span class="text-sm font-semibold {{ $iconColor }}">{{ $typeLabel }}</span>
@@ -309,16 +264,32 @@
                         class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-800 focus:border-gray-800 transition resize-none"></textarea>
                 </div>
 
+                <!-- Progress Bar -->
+                <div id="uploadWorkInstructionProgress" class="hidden">
+                    <div class="mb-2 flex justify-between items-center">
+                        <span class="text-sm font-medium text-gray-700">Uploading...</span>
+                        <span id="uploadWorkInstructionPercent" class="text-sm font-bold text-gray-600">0%</span>
+                    </div>
+                    <div class="w-full bg-gray-200 rounded-full h-3 overflow-hidden shadow-inner">
+                        <div id="uploadWorkInstructionBar" 
+                             class="h-3 rounded-full transition-all duration-300 ease-out"
+                             style="width: 0%; background: linear-gradient(90deg, #4B5563 0%, #1F2937 100%);"></div>
+                    </div>
+                    <p id="uploadWorkInstructionStatus" class="text-xs text-gray-500 mt-2">Preparing upload...</p>
+                </div>
+
                 <!-- Buttons -->
                 <div class="flex gap-3 pt-4">
                     <button 
                         type="button" 
                         onclick="closeModal('uploadModalWorkInstruction')"
+                        id="cancelWorkInstructionBtn"
                         class="flex-1 bg-gray-200 hover:bg-gray-300 text-gray-700 px-4 py-3 rounded-lg transition font-medium">
                         Batal
                     </button>
                     <button 
                         type="submit"
+                        id="submitWorkInstructionBtn"
                         class="flex-1 bg-gray-800 hover:bg-gray-900 text-white px-4 py-3 rounded-lg transition font-medium shadow-md hover:shadow-lg">
                         Upload
                     </button>
@@ -344,9 +315,13 @@
     .group:hover { transform: translateY(-4px); }
     .preview-btn:hover { cursor: pointer; }
     .preview-btn:active { transform: scale(0.98); }
+    
+    @keyframes pulse-progress {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0.8; }
+    }
+    #uploadWorkInstructionBar { animation: pulse-progress 2s ease-in-out infinite; }
 </style>
-
-@endif
 
 <script>
     // Buka modal upload
@@ -368,14 +343,133 @@
             modal.classList.remove('flex');
             if (id === 'previewModal') {
                 document.getElementById('previewContent').innerHTML = '';
-                // Reset slide variables
                 window.currentSlides = null;
                 window.currentSlideIndex = 0;
+            }
+            if (id === 'uploadModalWorkInstruction') {
+                const form = document.getElementById('uploadWorkInstructionForm');
+                if (form) form.reset();
+                const progress = document.getElementById('uploadWorkInstructionProgress');
+                if (progress) progress.classList.add('hidden');
+                document.getElementById('uploadWorkInstructionBar').style.width = '0%';
+                document.getElementById('uploadWorkInstructionPercent').textContent = '0%';
+                document.getElementById('uploadWorkInstructionStatus').textContent = 'Preparing upload...';
             }
         }
     }
 
-    // Preview file - FULL UPDATE
+    // Upload dengan Progress Bar
+    document.getElementById('uploadWorkInstructionForm')?.addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        const form = this;
+        const formData = new FormData(form);
+        const submitBtn = document.getElementById('submitWorkInstructionBtn');
+        const cancelBtn = document.getElementById('cancelWorkInstructionBtn');
+        const progressContainer = document.getElementById('uploadWorkInstructionProgress');
+        const progressBar = document.getElementById('uploadWorkInstructionBar');
+        const progressPercent = document.getElementById('uploadWorkInstructionPercent');
+        const progressStatus = document.getElementById('uploadWorkInstructionStatus');
+
+        progressContainer.classList.remove('hidden');
+        submitBtn.disabled = true;
+        cancelBtn.disabled = true;
+        submitBtn.innerHTML = `<svg class="animate-spin h-5 w-5 mx-auto" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+        </svg>`;
+
+        const xhr = new XMLHttpRequest();
+
+        xhr.upload.addEventListener('progress', function(e) {
+            if (e.lengthComputable) {
+                const percent = Math.round((e.loaded / e.total) * 100);
+                progressBar.style.width = percent + '%';
+                progressPercent.textContent = percent + '%';
+                progressStatus.textContent = `Uploading... ${percent}%`;
+            }
+        });
+
+        xhr.addEventListener('loadstart', () => progressStatus.textContent = 'Starting upload...');
+        xhr.addEventListener('load', () => {
+            if (xhr.status === 200) {
+                const data = JSON.parse(xhr.responseText);
+                if (data.success) {
+                    progressBar.style.background = 'linear-gradient(90deg, #10B981 0%, #059669 100%)';
+                    progressPercent.textContent = '100%';
+                    progressStatus.textContent = 'Upload selesai! Memproses...';
+                    setTimeout(() => {
+                        closeModal('uploadModalWorkInstruction');
+                        showNotification(data.message || 'Work Instruction berhasil diupload!', 'success');
+                        if (typeof loadTabContent === 'function') {
+                            const activeTab = document.querySelector('.tab-link.active');
+                            if (activeTab) loadTabContent(activeTab.dataset.tab, activeTab.dataset.url);
+                        } else {
+                            setTimeout(() => location.reload(), 1000);
+                        }
+                    }, 800);
+                } else {
+                    alert('Error: ' + (data.message || 'Gagal upload'));
+                    resetUpload();
+                }
+            } else {
+                alert('Server error: ' + xhr.status);
+                resetUpload();
+            }
+        });
+
+        xhr.addEventListener('error', () => {
+            alert('Upload gagal. Periksa koneksi internet.');
+            resetUpload();
+        });
+
+        xhr.open('POST', form.action);
+        xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+        xhr.setRequestHeader('X-CSRF-TOKEN', '{{ csrf_token() }}');
+        xhr.send(formData);
+
+        function resetUpload() {
+            submitBtn.disabled = false;
+            cancelBtn.disabled = false;
+            submitBtn.textContent = 'Upload';
+            progressContainer.classList.add('hidden');
+            progressBar.style.width = '0%';
+            progressPercent.textContent = '0%';
+            progressStatus.textContent = 'Preparing upload...';
+            progressBar.style.background = 'linear-gradient(90deg, #4B5563 0%, #1F2937 100%)';
+        }
+    });
+
+    // Auto-fill nama dari filename
+    document.getElementById('fileWorkInstructionInput')?.addEventListener('change', function(e) {
+        if (e.target.files.length > 0) {
+            const fileName = e.target.files[0].name;
+            const nameInput = this.form.querySelector('input[name="nama"]');
+            if (nameInput && !nameInput.value) {
+                nameInput.value = fileName.replace(/\.[^/.]+$/, "");
+            }
+        }
+    });
+
+    // Notification
+    function showNotification(message, type = 'success') {
+        const notif = document.createElement('div');
+        notif.className = `fixed top-4 right-4 px-6 py-3 rounded-lg shadow-lg z-[200] flex items-center gap-2 transition-all duration-300 ${
+            type === 'success' ? 'bg-gray-800 text-white' : 'bg-red-600 text-white'
+        }`;
+        notif.innerHTML = `
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="${
+                    type === 'success' ? 'M5 13l4 4L19 7' : 'M6 18L18 6M6 6l12 12'
+                }"/>
+            </svg>
+            ${message}
+        `;
+        document.body.appendChild(notif);
+        setTimeout(() => notif.remove(), 3000);
+    }
+
+    // Preview file
     document.addEventListener('click', function(e) {
         if (e.target.closest('.preview-btn')) {
             const btn = e.target.closest('.preview-btn');
@@ -390,22 +484,17 @@
             const videoExt = ['mp4','avi','mov','webm','mkv'];
             
             if (imageExt.includes(ext) || mime.startsWith('image/')) {
-                // Preview gambar
                 content.innerHTML = `<img src="${url}" alt="${name}" class="w-full max-h-[80vh] object-contain mx-auto">`;
             } 
             else if (videoExt.includes(ext) || mime.startsWith('video/')) {
-                // Preview video
                 content.innerHTML = `<video controls autoplay class="w-full max-h-[80vh] mx-auto">
-                    <source src="${url}" type="${mime}">
-                    Your browser does not support the video tag.
+                    <source src="${url}" type="${mime}">Your browser does not support the video tag.
                 </video>`;
             } 
             else if (ext === 'pdf' || mime === 'application/pdf') {
-                // Preview PDF
                 content.innerHTML = `<iframe src="${url}" class="w-full h-[80vh]" frameborder="0"></iframe>`;
             } 
             else if (ext === 'ppt' || ext === 'pptx') {
-                // Preview PPT sebagai slide show
                 content.innerHTML = `
                     <div class="bg-white h-[80vh] flex flex-col">
                         <div class="p-3 bg-gray-800 text-white flex justify-between items-center">
@@ -423,7 +512,6 @@
                                     <p class="text-xs text-gray-400 mt-2">This may take a moment</p>
                                 </div>
                             </div>
-                            <!-- Navigation buttons -->
                             <button id="prevSlide" class="hidden absolute left-4 top-1/2 -translate-y-1/2 bg-black bg-opacity-60 hover:bg-opacity-80 text-white p-3 rounded-full transition z-10">
                                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
@@ -445,7 +533,6 @@
                         </div>
                     </div>`;
                 
-                // Load slides via AJAX
                 fetch(`/preview-ppt/${fileId}`)
                     .then(response => response.json())
                     .then(data => {
@@ -453,27 +540,20 @@
                             window.currentSlides = data.slides;
                             window.currentSlideIndex = 0;
                             showSlide(0);
-                            
-                            // Show navigation
                             document.getElementById('prevSlide').classList.remove('hidden');
                             document.getElementById('nextSlide').classList.remove('hidden');
-                            
-                            // Navigation handlers
                             document.getElementById('prevSlide').onclick = () => {
                                 if (window.currentSlideIndex > 0) {
                                     window.currentSlideIndex--;
                                     showSlide(window.currentSlideIndex);
                                 }
                             };
-                            
                             document.getElementById('nextSlide').onclick = () => {
                                 if (window.currentSlideIndex < window.currentSlides.length - 1) {
                                     window.currentSlideIndex++;
                                     showSlide(window.currentSlideIndex);
                                 }
                             };
-                            
-                            // Keyboard navigation
                             const keyHandler = function(e) {
                                 if (e.key === 'ArrowLeft' && window.currentSlideIndex > 0) {
                                     window.currentSlideIndex--;
@@ -483,10 +563,7 @@
                                     showSlide(window.currentSlideIndex);
                                 }
                             };
-                            
                             document.addEventListener('keydown', keyHandler);
-                            
-                            // Store handler untuk cleanup nanti
                             window.slideKeyHandler = keyHandler;
                         } else {
                             document.getElementById('slideContainer').innerHTML = `
@@ -512,7 +589,6 @@
                     });
             }
             else if (['doc','docx','xls','xlsx'].includes(ext)) {
-                // Preview Office documents lainnya
                 const isLocalhost = window.location.hostname === 'localhost' || 
                                   window.location.hostname === '127.0.0.1' ||
                                   window.location.hostname.includes('192.168');
@@ -535,7 +611,7 @@
                                 </svg>
                                 Download File
                             </a>
-                            <p class="text-xs text-gray-500 mt-4">💡 Tip: Upload ke server production untuk preview online</p>
+                            <p class="text-xs text-gray-500 mt-4">Tip: Upload ke server production untuk preview online</p>
                         </div>`;
                 } else {
                     const fullUrl = url.startsWith('http') ? url : window.location.origin + url;
@@ -559,7 +635,6 @@
                 }
             } 
             else {
-                // File lain
                 content.innerHTML = `
                     <div class="text-white text-center p-8 bg-gray-800 rounded-lg">
                         <svg class="w-16 h-16 mx-auto mb-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -602,7 +677,6 @@
         
         counter.textContent = `Slide ${index + 1} / ${slides.length}`;
         
-        // Update button states
         const prevBtn = document.getElementById('prevSlide');
         const nextBtn = document.getElementById('nextSlide');
         
@@ -619,81 +693,17 @@
         }
     }
 
-    // Upload form handler
-    document.getElementById('uploadWorkInstructionForm')?.addEventListener('submit', function(e) {
-        e.preventDefault();
-        
-        const formData = new FormData(this);
-        const submitBtn = this.querySelector('button[type="submit"]');
-        const originalText = submitBtn.textContent;
-        
-        submitBtn.disabled = true;
-        submitBtn.innerHTML = `<svg class="animate-spin h-5 w-5 mx-auto" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-        </svg>`;
-
-        fetch(this.action, {
-            method: 'POST',
-            headers: {
-                'X-CSRF-TOKEN': '{{ csrf_token() }}',
-                'X-Requested-With': 'XMLHttpRequest'
-            },
-            body: formData
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                closeModal('uploadModalWorkInstruction');
-                this.reset();
-                
-                const notif = document.createElement('div');
-                notif.className = 'fixed top-4 right-4 bg-gray-800 text-white px-6 py-3 rounded-lg shadow-lg z-[200] flex items-center gap-2';
-                notif.innerHTML = `<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg> ${data.message}`;
-                document.body.appendChild(notif);
-                setTimeout(() => notif.remove(), 3000);
-
-                // Reload tab
-                if (typeof loadTabContent === 'function') {
-                    const activeTab = document.querySelector('.tab-link.active');
-                    if (activeTab) loadTabContent(activeTab.dataset.tab, activeTab.dataset.url);
-                } else {
-                    setTimeout(() => location.reload(), 1000);
-                }
-            } else {
-                alert('Error: ' + data.message);
-            }
-        })
-        .catch(() => alert('Terjadi kesalahan saat upload'))
-        .finally(() => {
-            submitBtn.disabled = false;
-            submitBtn.textContent = originalText;
-        });
-    });
-
-    // Auto-fill nama dari filename
-    document.getElementById('fileWorkInstructionInput')?.addEventListener('change', function(e) {
-        if (e.target.files.length > 0) {
-            const fileName = e.target.files[0].name;
-            const nameInput = this.form.querySelector('input[name="nama"]');
-            if (nameInput && !nameInput.value) {
-                nameInput.value = fileName.replace(/\.[^/.]+$/, "");
-            }
-        }
-    });
-
     // Escape key
     document.addEventListener('keydown', e => {
         if (e.key === 'Escape') {
             closeModal('uploadModalWorkInstruction');
-            
-            // Cleanup keyboard handler saat tutup modal
             if (window.slideKeyHandler) {
                 document.removeEventListener('keydown', window.slideKeyHandler);
                 window.slideKeyHandler = null;
             }
-            
             closeModal('previewModal');
         }
     });
 </script>
+
+@endif
